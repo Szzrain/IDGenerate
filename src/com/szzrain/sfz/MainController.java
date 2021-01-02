@@ -26,6 +26,7 @@ public class MainController implements Initializable {
     public TextField year;
     public TextField month;
     public TextField day;
+    //TODO: make use of this textfield
     public TextField city;
 
     public ObservableList<MenuItem> items;
@@ -45,15 +46,20 @@ public class MainController implements Initializable {
     int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     public void summonID(ActionEvent actionEvent){
-        String t = SummonMain.getCurrentRegion()+"100"+getYear()+getMonth()+getDate()+"001";
+        //generate first 17 digit of ID
+        String t = SummonMain.getCurrentRegion()+"000"+getYear()+getMonth()+getDate()+"001";//not finished yet. String should be replaced by method
+        //debug option, this line can be delete
         System.out.println(t);
+        //
         setResult(SummonMain.SFZSummon(t));
     }
 
+    //result show on GUI this method will be invoke by main class
     public void setResult(String s){
         summon.setText(s);
     }
 
+    //default data
     int y=2000;
     int m=1;
     public String getYear(){
@@ -61,6 +67,7 @@ public class MainController implements Initializable {
             y = Integer.parseInt(year.getCharacters().toString());
             return String.valueOf(y);
         } catch (NumberFormatException ignored){
+            //if input is illegal
             return String.valueOf( new Random().nextInt(21)+1980);
         }
     }
@@ -68,11 +75,13 @@ public class MainController implements Initializable {
     public String getMonth(){
         try {
             m=Integer.parseInt(month.getCharacters().toString());
-            return numCheck(m);
+            if(m>0&&m<=12){
+            return numCheck(m);}
         }catch (NumberFormatException ignored){
-            m=new Random().nextInt(12)+1;
-            return numCheck(m);
         }
+        //if input is illegal
+        m=new Random().nextInt(12)+1;
+        return numCheck(m);
     }
 
     public String getDate(){
@@ -80,14 +89,17 @@ public class MainController implements Initializable {
         try {
             d=Integer.parseInt(day.getCharacters().toString());
             if (!(d>0&&d<=days[m-1])){
+                //if user input is illegal
                 return randomDate();
             }
             return String.valueOf(d);
         }catch (NumberFormatException ignored){
+            //if user didn't input or type some strange thing
             return randomDate();
         }
     }
 
+    //generate a random date
     public String randomDate(){
         int d;
         if ((y%100==0&&y%400==0)||(y%100!=0&&y%4==0)){

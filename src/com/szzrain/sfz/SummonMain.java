@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SummonMain extends Application {
+    //the final digit
     public static String SFZSummon(String num){
         if (num.length()!=17){
             return "";
