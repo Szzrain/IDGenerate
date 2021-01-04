@@ -29,7 +29,7 @@ public class MainController implements Initializable {
     //TODO: make use of this textfield
     public TextField city;
 
-    public ObservableList<MenuItem> items;
+    private ObservableList<MenuItem> items;
 
     //all buttons will invoke this method
     public void bc(ActionEvent actionEvent){
