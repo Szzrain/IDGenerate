@@ -31,14 +31,8 @@ public class MainController implements Initializable {
 
     //all buttons will invoke this method
     public void bc(ActionEvent actionEvent){
-        for (MenuItem m:
-             items) {
-            if (actionEvent.getSource()==m){
-                region.setText(m.getText());
-                SummonMain.setCurrentRegion(m.getText());
-                break;
-            }
-        }
+        region.setText(((MenuItem)(actionEvent.getSource())).getText());
+        SummonMain.setCurrentRegion(((MenuItem)(actionEvent.getSource())).getText());
     }
 
     int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};
@@ -121,7 +115,9 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (String s : SummonMain.region.keySet()) {
-            region.getItems().add(new MenuItem(s));
+            MenuItem t = new MenuItem(s);
+            t.setOnAction(this::bc);
+            region.getItems().add(t);
         }
         items=region.getItems();
     }
