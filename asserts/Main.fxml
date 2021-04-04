@@ -2,22 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szzrain.sfz.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szzrain.sfz.MainController">
     <MenuButton fx:id="region" mnemonicParsing="false" text="请选择地区">
-      <items>
-          <MenuItem fx:id="beijing" mnemonicParsing="false" onAction="#bc" text="北京市"/>
-          <MenuItem fx:id="tianjin" mnemonicParsing="false" onAction="#bc" text="天津市"/>
-          <MenuItem fx:id="hebei" mnemonicParsing="false" onAction="#bc" text="河北省"/>
-      </items>
     </MenuButton>
-    <Text fx:id="summon" layoutX="263.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
-    <Button fx:id="summonbutton" layoutX="208.0" layoutY="131.0" mnemonicParsing="false" onAction="#summonID"
-            text="生成一个"/>
-    <TextField fx:id="year" layoutX="231.0" layoutY="3.0" prefHeight="23.0" prefWidth="64.0" promptText="YYYY"/>
-    <TextField fx:id="month" layoutX="300.0" layoutY="3.0" prefHeight="23.0" prefWidth="41.0" promptText="MM"/>
-    <TextField fx:id="day" layoutX="353.0" layoutY="3.0" prefHeight="23.0" prefWidth="33.0" promptText="DD"/>
-    <TextField fx:id="city" layoutX="116.0" layoutY="3.0" prefHeight="23.0" prefWidth="92.0" promptText="具体位置编号"/>
+    <Button fx:id="summonbutton" layoutX="208.0" layoutY="131.0" mnemonicParsing="false" onAction="#summonID" text="生成一个" />
+    <TextField fx:id="year" layoutX="231.0" layoutY="3.0" prefHeight="23.0" prefWidth="64.0" promptText="YYYY" />
+    <TextField fx:id="month" layoutX="300.0" layoutY="3.0" prefHeight="23.0" prefWidth="41.0" promptText="MM" />
+    <TextField fx:id="day" layoutX="353.0" layoutY="3.0" prefHeight="23.0" prefWidth="33.0" promptText="DD" />
+    <TextField fx:id="city" layoutX="116.0" layoutY="3.0" prefHeight="23.0" prefWidth="92.0" promptText="具体位置编号" />
+   <TextField fx:id="textResult" layoutX="289.0" layoutY="131.0" />
 </AnchorPane>

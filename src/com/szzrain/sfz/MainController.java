@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.Random;
@@ -17,19 +16,18 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
-    public MenuItem beijing;
-    public MenuItem tianjin;
-    public MenuItem hebei;
     public MenuButton region;
-    public Text summon;
     public Button summonbutton;
     public TextField year;
     public TextField month;
     public TextField day;
     //TODO: make use of this textfield
     public TextField city;
+    public TextField textResult;
 
     private ObservableList<MenuItem> items;
+
+    private static final String ANSI_RED = "\u001B[31m";
 
     //all buttons will invoke this method
     public void bc(ActionEvent actionEvent){
@@ -56,7 +54,11 @@ public class MainController implements Initializable {
 
     //result show on GUI this method will be invoke by main class
     public void setResult(String s){
-        summon.setText(s);
+        if("".equals(s)){
+            textResult.setText(ANSI_RED+"错误！");
+            return;
+        }
+        textResult.setText(s);
     }
 
     //default data
@@ -118,6 +120,9 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        for (String s : SummonMain.region.keySet()) {
+            region.getItems().add(new MenuItem(s));
+        }
         items=region.getItems();
     }
 }
