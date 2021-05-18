@@ -1,6 +1,5 @@
 package com.szzrain.sfz;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,9 +24,7 @@ public class MainController implements Initializable {
     public TextField city;
     public TextField textResult;
 
-    private ObservableList<MenuItem> items;
 
-    private static final String ANSI_RED = "\u001B[31m";
 
     //all buttons will invoke this method
     public void bc(ActionEvent actionEvent){
@@ -39,17 +36,26 @@ public class MainController implements Initializable {
 
     public void summonID(ActionEvent actionEvent){
         //generate first 17 digit of ID
-        String t = SummonMain.getCurrentRegion()+"000"+getYear()+getMonth()+getDate()+"001";//not finished yet. String should be replaced by method
+        String t = SummonMain.getCurrentRegion()+getCity()+getYear()+getMonth()+getDate()+"001";//not finished yet. String should be replaced by method
         //debug option, this line can be delete
         System.out.println(t);
         //
         setResult(SummonMain.SFZSummon(t));
     }
 
+
+    public String getCity(){
+        try {
+            Integer.parseInt(city.getText());
+            return city.getText();
+        }catch (NumberFormatException ignored){
+            return "000";
+        }
+    }
     //result show on GUI this method will be invoke by main class
     public void setResult(String s){
         if("".equals(s)){
-            textResult.setText(ANSI_RED+"错误！");
+            textResult.setText("错误！");
             return;
         }
         textResult.setText(s);
@@ -119,6 +125,5 @@ public class MainController implements Initializable {
             t.setOnAction(this::bc);
             region.getItems().add(t);
         }
-        items=region.getItems();
     }
 }

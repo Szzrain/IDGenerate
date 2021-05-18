@@ -55,5 +55,4 @@ public class SummonMain extends Application {
                     region.get(s);
         }
     }
-
 }
